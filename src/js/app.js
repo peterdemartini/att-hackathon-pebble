@@ -43,7 +43,7 @@ var groupPos = 0;
 var groups = [
     {
         name : 'Rally Fighter',
-        body : 'Select: lock; \nUp: headlights; \nDown: wipers;',
+        body : 'Up: headlights;\n Select: lock; \nDown: wipers;',
         commands : [
             {
                 event : 'select',
@@ -91,13 +91,13 @@ var groups = [
     },
     {
         name : 'Cocktopod',
-        body : 'Select: Yo! I am Drunk; \nUp: Let\'s Party; \nDown: Pick me up!;',
+        body : 'Up: Let\'s Party; \nSelect: I\'m on it; \nDown: Pick me up!;',
         commands : [
             {
                 event : 'select',
                 click : 'click',
                 callback : function(){
-                    groupMessage.send('Yo! I am Drunk');
+                    groupMessage.send('I\'m on it');
                 }
             },
             {
