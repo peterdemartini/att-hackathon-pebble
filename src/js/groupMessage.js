@@ -1,8 +1,6 @@
 'use strict';
 
-var skynetRest = require('./skynetRest.js'),
-    Settings = require('settings'),
-    ajax = require('ajax');
+var skynetRest = require('./skynetRest.js');
 
 var uuid = '01ccada1-361d-11e4-8e5a-919063640dc3',
   token = 'nvige9mfoe7e3ik9u3resels65g0hpvi';
@@ -19,16 +17,18 @@ module.exports = {
     });
   },
   recieve: function(cb){
-    var lastChecked = Settings.data('lastChecked') || new Date().getTime();
-    ajax({
-        url: 'http://something.herokuapp.com/messages?since=' + lastChecked,
+    // Not working
+    skynetRest.custom({
+        path: '/subscribe/' + uuid  + '?token=' + token,
         type: 'json',
+        headers : {
+          skynet_auth_uuid : uuid,
+          skynet_auth_token : token
+        },
         method: 'GET'
-    }, function (messages) {
-        lastChecked = new Date().getTime();
-        Settings.data('lastChecked', lastChecked);
-        console.log('Data: ', messages);
-        cb(messages);
+    }, function (data) {
+        console.log('Data: ', JSON.stringify(data));
+        cb(data);
     }, function (err) {
         console.log('Error: ', err);
         cb({ skynet: 'offline' });

@@ -25,12 +25,6 @@ lib.connect = function(resolve, reject){
 		lib.conn.on('disconnect', function(){
 	    console.log('Disconnected from Meshblu');
 	  });
-
-	  lib.conn.update({
-	  	uuid : creds.uuid,
-	  	token : creds.token,
-	  	type : 'pebble'
-	  });
 	});
 
 	lib.conn.on('notReady', function(err){

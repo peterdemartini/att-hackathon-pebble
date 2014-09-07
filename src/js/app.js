@@ -8,7 +8,7 @@ var UI = require('ui'),
     skynetRest = require('./skynetRest.js'),
     rallyFighter = require('./rallyFighter.js'),
     groupMessage = require('./groupMessage.js'),
-    skynetMQTT = require('./skynetMQTT.js'),
+    skynetLib = require('./skynetLib.js'),
     octobluTitle = 'Octoblu',
     meshbluTitle = 'Meshblu',
     conn;
@@ -153,21 +153,6 @@ function onConnect(data){
       group = showNextGroup();
       showGroup(group);
     });
-
-    skynetMQTT();
-
-    /*
-    setInterval(function(){
-        groupMessage.recieve(function(messages){
-            var throttled = _.throttle(function(message){
-                showCard('Message Received', JSON.stringify(message.payload));
-            }, 1000);
-            messages.forEach(function(message){
-                throttled(message);
-            });
-        });
-    }, 5 * 1000);
-    */
 
 }
 
