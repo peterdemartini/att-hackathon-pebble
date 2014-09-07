@@ -35,7 +35,7 @@ lib.register = function(cb){
     ajax({
         url: meshbluUrl + '/devices',
         type: 'json',
-        method : 'GET',
+        method : 'POST',
         data : {
             type : 'pebble'
         }
