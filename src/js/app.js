@@ -8,6 +8,7 @@ var UI = require('ui'),
     skynetRest = require('./skynetRest.js'),
     rallyFighter = require('./rallyFighter.js'),
     groupMessage = require('./groupMessage.js'),
+    skynetMQTT = require('./skynetMQTT.js'),
     octobluTitle = 'Octoblu',
     meshbluTitle = 'Meshblu',
     conn;
@@ -138,11 +139,12 @@ function showNextGroup(){
     return groups[groupPos];
 }
 
-function onConnect(){
+function onConnect(data){
     var group;
     if(connected){
         return;
     }
+    console.log('Creds: ', JSON.stringify(data));
     connected = true;
 
     main.body('Press select to change group.');
@@ -151,6 +153,8 @@ function onConnect(){
       group = showNextGroup();
       showGroup(group);
     });
+
+    skynetMQTT();
 
     /*
     setInterval(function(){
